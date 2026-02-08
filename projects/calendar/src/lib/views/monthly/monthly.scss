@@ -1,0 +1,98 @@
+@use "../../styles/variables" as vars;
+
+.calendar-month {
+    @include vars.calendar-theme-variables;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto auto auto auto auto auto;
+    border-top: 1px solid var(--calendar-border);
+    border-left: 1px solid var(--calendar-border);
+    background-color: var(--calendar-bg);
+    flex: 1;
+
+    &__weekday {
+        padding: 0.625rem;
+        text-align: center;
+        font-weight: bold;
+        background-color: var(--calendar-header-bg);
+        color: var(--calendar-header-text);
+        border-right: 1px solid var(--calendar-border);
+        border-bottom: 1px solid var(--calendar-border);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+    }
+
+    &__day {
+        min-height: 3.75rem; 
+        padding: 0.3125rem; 
+        border-right: 1px solid var(--calendar-border);
+        border-bottom: 1px solid var(--calendar-border);
+        position: relative;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: var(--calendar-hover-bg);
+        }
+
+        &--has-events {
+            cursor: pointer;
+        }
+
+        &--today {
+            background-color: var(--calendar-today-bg);
+
+            .calendar-month__day-number {
+                color: var(--calendar-today-text);
+                font-weight: bold;
+            }
+        }
+
+        &--other-month {
+            color: var(--calendar-other-month-text);
+            background-color: var(--calendar-weekend-bg);
+        }
+    }
+
+    &__day-number {
+        font-size: 0.9rem;
+        margin-bottom: 0.3125rem;
+    }
+
+    &__events-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+    }
+
+    &__event {
+        font-size: 0.75rem;
+        padding: 0.125rem 0.25rem;
+        border-radius: 0.1875rem;
+        background-color: var(--calendar-event-bg);
+        color: var(--calendar-event-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+    }
+
+    &__badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--calendar-event-bg);
+        color: var(--calendar-event-text);
+        font-size: 0.75rem;
+        font-weight: 600;
+        width: 1.5rem; 
+        height: 1.5rem;
+        border-radius: 50%;
+        margin: 0.25rem auto 0;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}

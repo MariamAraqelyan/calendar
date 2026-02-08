@@ -1,1 +1,54 @@
-<p>monthly works!</p>
+<div class="calendar-month">
+    @for (day of weekDays(); track day) {
+        <div class="calendar-month__weekday">{{ day }}</div>
+    }
+    
+    @for (date of calendarGrid(); track date.getTime()) {
+        @let dayEvents = getEventsForDay(date);
+        
+        <div 
+            class="calendar-month__day" 
+            [class.calendar-month__day--today]="isToday(date)"
+            [class.calendar-month__day--other-month]="!isSameMonth(date)"
+            [class.calendar-month__day--has-events]="dayEvents.length > 0"
+            (click)="onDateClick(date)"
+        >
+            @if (dayCellTemplate()) {
+                <ng-container 
+                    [ngTemplateOutlet]="dayCellTemplate()!" 
+                    [ngTemplateOutletContext]="{ $implicit: date }">
+                </ng-container>
+            } @else {
+                <div class="calendar-month__day-number">{{ date.getDate() }}</div>
+                
+                <div class="calendar-month__events-list">
+                    @if (store.config().showOnlyEventsCount) {
+                        @if (dayEvents.length) {
+                            <div class="calendar-month__badge">
+                                {{ dayEvents.length }}
+                            </div>
+                        }
+                    } @else {
+                        @for (event of dayEvents; track event.id) {
+                            @if (eventTemplate()) {
+                                <ng-container 
+                                    [ngTemplateOutlet]="eventTemplate()!" 
+                                    [ngTemplateOutletContext]="{ $implicit: event }">
+                                </ng-container>
+                            } @else {
+                                <div 
+                                    class="calendar-month__event" 
+                                    [style.background-color]="event.backgroundColor"
+                                    [style.color]="event.color"
+                                    (click)="$event.stopPropagation(); onEventClick(event)"
+                                >
+                                    {{ event.title }}
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>
