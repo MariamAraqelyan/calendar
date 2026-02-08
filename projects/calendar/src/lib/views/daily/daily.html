@@ -9,18 +9,21 @@
   </div>
   
   <div class="day-container__content">
-    <div class="day-container__header">
+    <header class="day-container__header">
       <div class="day-container__info">
         <span class="day-container__name">{{ dayInfo().name }}</span>
-        <span class="day-container__number" [class.day-container__number--today]="dayInfo().isToday">
+        <span class="day-container__number" 
+              [class.day-container__number--today]="dayInfo().isToday">
           {{ dayInfo().date.getDate() }}
         </span>
       </div>
-    </div>
+    </header>
     
     <div class="day-container__grid-scroll-area">
       <div class="day-container__grid">
-        <div class="day-container__column" (click)="onDateClick(dayInfo().date)">
+        <div class="day-container__column" 
+             (click)="onDateClick(dayInfo().date)">
+          
           @for (hour of hours; track hour) {
             <div class="day-container__grid-slot"></div>
           }
@@ -28,12 +31,13 @@
           <div class="day-container__events-overlay">
             @for (event of dayEvents(); track event.id) {
               <div 
-                class="day-container__event" 
+                class="day-container__event"
                 [style.background-color]="event.backgroundColor"
                 [style.color]="event.textColor"
-                [style.height.rem]="getEventHeight(event) * 0.0625"
-                [style.top.rem]="getEventTop(event) * 0.0625"
+                [style.height]="getEventHeightRem(event)"
+                [style.top]="getEventTopRem(event)"
                 (click)="$event.stopPropagation(); onEventClick(event)"
+                (keydown.enter)="onEventClick(event)"
               >
                 <div class="day-container__event-title">{{ event.title }}</div>
                 

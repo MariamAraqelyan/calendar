@@ -9,6 +9,11 @@ export const CALENDAR_CONSTANTS = {
   DAY_OFFSET: 1,
   HOURS_IN_DAY: 24,
   MINUTES_IN_HOUR: 60,
+  VIEWS: {
+    MONTH: 'month',
+    WEEK: 'week',
+    DAY: 'day',
+  }
 } as const;
 
 export const WEEK_START = {

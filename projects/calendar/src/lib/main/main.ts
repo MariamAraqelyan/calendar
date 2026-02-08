@@ -10,7 +10,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { CalendarStore } from '../services/calendar.store';
-import { CalendarConfig, CalendarEvent, CalendarView } from '../models/calendar.models';
+import { CALENDAR_CONSTANTS, CalendarConfig, CalendarEvent, CalendarView } from '../models/calendar.models';
 import { Monthly } from '../views/monthly/monthly';
 import { Weekly } from '../views/weekly/weekly';
 import { Daily } from '../views/daily/daily';
@@ -30,6 +30,7 @@ import { Daily } from '../views/daily/daily';
 })
 export class Main {
   protected readonly store = inject(CalendarStore);
+  protected readonly VIEWS = CALENDAR_CONSTANTS.VIEWS;
 
   readonly view = input<CalendarView>('month');
   readonly events = input<readonly CalendarEvent[]>([]);

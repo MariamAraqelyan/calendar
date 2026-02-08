@@ -1,54 +1,57 @@
-<div class="calendar-container calendar-{{viewState()}}-view" [attr.data-theme]="configState().theme ? 'dark' : 'light'">
-    <div class="calendar-header">
-    <div class="calendar-controls">
-        <button class="btn" (click)="store.prev()">&lt;</button>
-        <button class="btn" (click)="store.today()">Today</button>
-        <button class="btn" (click)="store.next()">&gt;</button>
-    </div>
+<div class="calendar"
+    [attr.data-theme]="configState().theme ? 'dark' : 'light'"
+    [class]="'calendar--' + viewState() + '-view'">
     
-    <h2 class="calendar-title">{{ calendarTitle() }}</h2>
-    
-    <div class="view-switcher">
-        <button
-            class="btn"
-            [class.active]="viewState() === 'month'" 
-            (click)="store.setView('month')" 
-        >Month</button>
-        <button 
-            class="btn"
-            [class.active]="viewState() === 'week'" 
-            (click)="store.setView('week')" 
-        >Week</button>
-        <button
-            class="btn"
-            [class.active]="viewState() === 'day'" 
-            (click)="store.setView('day')" 
-        >Day</button>
-    </div>
-    </div>
+    <header class="calendar__header">
+        <div class="calendar__controls">
+            <button class="calendar__btn" (click)="store.prev()">&lt;</button>
+            <button class="calendar__btn" (click)="store.today()">Today</button>
+            <button class="calendar__btn" (click)="store.next()">&gt;</button>
+        </div>
+        
+        <h2 class="calendar__title">{{ calendarTitle() }}</h2>
+        
+        <nav class="calendar__view-switcher">
+            <button
+                class="calendar__btn"
+                [class.calendar__btn--active]="viewState() === VIEWS.MONTH" 
+                (click)="store.setView(VIEWS.MONTH)" 
+            >Month</button>
+            <button 
+                class="calendar__btn"
+                [class.calendar__btn--active]="viewState() === VIEWS.WEEK" 
+                (click)="store.setView(VIEWS.WEEK)" 
+            >Week</button>
+            <button
+                class="calendar__btn"
+                [class.calendar__btn--active]="viewState() === VIEWS.DAY" 
+                (click)="store.setView(VIEWS.DAY)" 
+            >Day</button>
+        </nav>
+    </header>
 
-    <div class="calendar-body">
-    @switch (viewState()) {
-        @case ('month') {
-            <app-monthly
-                [dayCellTemplate]="dayCellTemplate()!"
-                [eventTemplate]="eventTemplate()!"
-                (dateClick)="onDateClick($event)"
-                (eventClick)="onEventClick($event)"
-            />
+    <main class="calendar__body">
+        @switch (viewState()) {
+            @case (VIEWS.MONTH) {
+                <app-monthly
+                    [dayCellTemplate]="dayCellTemplate()!"
+                    [eventTemplate]="eventTemplate()!"
+                    (dateClick)="onDateClick($event)"
+                    (eventClick)="onEventClick($event)"
+                />
+            }
+            @case (VIEWS.WEEK) {
+                <app-weekly
+                    (dateClick)="onDateClick($event)"
+                    (eventClick)="onEventClick($event)"
+                />
+            }
+            @case (VIEWS.DAY) {
+                <app-daily
+                    (dateClick)="onDateClick($event)"
+                    (eventClick)="onEventClick($event)"
+                />
+            }
         }
-        @case ('week') {
-            <app-weekly
-                (dateClick)="onDateClick($event)"
-                (eventClick)="onEventClick($event)"
-            />
-        }
-        @case ('day') {
-            <app-daily
-                (dateClick)="onDateClick($event)"
-                (eventClick)="onEventClick($event)"
-            />
-        }
-    }
-    </div>
+    </main>
 </div>

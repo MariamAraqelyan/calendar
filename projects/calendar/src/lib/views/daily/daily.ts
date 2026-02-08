@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common';
 })
 export class Daily {
   private readonly store = inject(CalendarStore);
+  private readonly PX_TO_REM = 0.0625;
 
   readonly eventClick = output<CalendarEvent>();
   readonly dateClick = output<Date>();
@@ -51,6 +52,20 @@ export class Daily {
     const diffMinutes = (end.getTime() - start.getTime()) / 60000;
     
     return Math.max(diffMinutes, 25);
+  }
+
+  getEventTopRem(event: CalendarEvent): string {
+  const pixels = (new Date(event.start).getHours() * 60) + new Date(event.start).getMinutes();
+  return `${pixels * this.PX_TO_REM}rem`;
+}
+
+  getEventHeightRem(event: CalendarEvent): string {
+    const start = new Date(event.start);
+    const end = new Date(event.end);
+    const diffMinutes = (end.getTime() - start.getTime()) / 60000;
+    const heightPx = Math.max(diffMinutes, 25); 
+    
+    return `${heightPx * this.PX_TO_REM}rem`;
   }
 
   onEventClick(event: CalendarEvent): void {
