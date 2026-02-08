@@ -1,1 +1,54 @@
-<p>weekly works!</p>
+<div class="week-container">
+  <div class="week-container__time-column">
+    <div class="week-container__time-header"></div>
+    <div class="week-container__time-slots">
+      @for (hour of hours; track hour) {
+        <div class="week-container__time-slot">
+          {{ hour }}:00
+        </div>
+      }
+    </div>
+  </div>
+  
+  <div class="week-container__days-wrapper">
+    <div class="week-container__days-header">
+      @for (day of weekDays(); track day.date.getTime()) {
+        <div class="week-container__day-column-header" (click)="onDateClick(day.date)">
+          <span class="week-container__day-name">{{ day.name }}</span>
+          <span class="week-container__day-number" 
+                [class.week-container__day-number--today]="day.isToday">
+            {{ day.date.getDate() }}
+          </span>
+        </div>
+      }
+    </div>
+    
+    <div class="week-container__grid-scroll-area">
+      <div class="week-container__grid">
+        @for (day of weekDays(); track day.date.getTime()) {
+          <div class="week-container__day-column" (click)="onDateClick(day.date)">
+            
+            @for (hour of hours; track hour) {
+              <div class="week-container__grid-slot"></div>
+            }
+            
+            <div class="week-container__events-overlay">
+              @for (event of getEventsForDay(day.date); track event.id) {
+                <div 
+                  class="week-container__event" 
+                  [style.background-color]="event.backgroundColor"
+                  [style.color]="event.textColor"
+                  [style.top.rem]="getEventTop(event) * 0.0625"
+                  [style.height.rem]="getEventHeight(event) * 0.0625"
+                  (click)="$event.stopPropagation(); onEventClick(event)"
+                >
+                  <div class="week-container__event-title">{{ event.title }}</div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

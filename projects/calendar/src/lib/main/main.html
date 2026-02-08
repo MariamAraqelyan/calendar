@@ -30,15 +30,18 @@
     <div class="calendar-body">
     @switch (viewState()) {
         @case ('month') {
-        <app-monthly
-            [dayCellTemplate]="dayCellTemplate()!"
-            [eventTemplate]="eventTemplate()!"
-            (eventClick)="onEventClick($event)"
-            (dateClick)="onDateClick($event)"
-        />
+            <app-monthly
+                [dayCellTemplate]="dayCellTemplate()!"
+                [eventTemplate]="eventTemplate()!"
+                (eventClick)="onEventClick($event)"
+                (dateClick)="onDateClick($event)"
+            />
         }
         @case ('week') {
-            <app-weekly/>
+            <app-weekly
+              (eventClick)="onEventClick($event)"
+              (dateClick)="onDateClick($event)"
+            />
         }
         @case ('day') {
             <app-daily/>

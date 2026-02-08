@@ -45,8 +45,6 @@ export class Main {
   currentDate = this.store.currentDate;
   configState = this.store.config;
 
-  //calendarTitle = signal('');
-
   calendarTitle = computed(() => {
     const date = this.currentDate();
     const locale = this.configState().locale || 'en-US';
@@ -54,8 +52,6 @@ export class Main {
   });
 
   constructor() {
-    // Sync inputs to the store. 
-    // effects automatically track the signals used inside them.
     effect(() => this.store.setView(this.view()));
     effect(() => this.store.setEvents(this.events()));
     effect(() => this.store.updateConfig(this.config()));

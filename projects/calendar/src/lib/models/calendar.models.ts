@@ -7,6 +7,8 @@ export const CALENDAR_CONSTANTS = {
   DAYS_IN_WEEK: 7,
   MONTH_OFFSET: 1,
   DAY_OFFSET: 1,
+  HOURS_IN_DAY: 24,
+  MINUTES_IN_HOUR: 60,
 } as const;
 
 export const WEEK_START = {
