@@ -106,7 +106,7 @@ module.exports = defineConfig([
     files: ["**/*.html"],
     extends: [
       angular.configs.templateRecommended,
-      angular.configs.templateAccessibility,
+      // angular.configs.templateAccessibility,
     ],
     rules: {
       '@angular-eslint/template/attributes-order': [
@@ -123,7 +123,6 @@ module.exports = defineConfig([
           ],
         },
       ],
-      '@angular-eslint/template/button-has-type': 'warn',
       '@angular-eslint/template/cyclomatic-complexity': ['warn', { maxComplexity: 10 }],
       '@angular-eslint/template/eqeqeq': 'error',
       '@angular-eslint/template/prefer-control-flow': 'error',

@@ -24,7 +24,7 @@ export const WEEK_START = {
 /**
  * Modernized Calendar Event.
  */
-export interface CalendarEvent<T = unknown> {
+export type CalendarEvent<T = unknown> = {
   readonly id: string | number;
   readonly title: string;
   readonly start: Date;
@@ -41,7 +41,7 @@ export interface CalendarEvent<T = unknown> {
 /**
  * Configuration options for the Calendar instance.
  */
-export interface CalendarConfig {
+export type CalendarConfig = {
   readonly locale?: string;
   /** 0 = Sunday, 1 = Monday, etc. */
   readonly weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
@@ -53,7 +53,7 @@ export interface CalendarConfig {
 /**
  * Represents the global state of the Calendar.
  */
-export interface CalendarState {
+export type CalendarState = {
   readonly view: CalendarView;
   readonly currentDate: Date;
   readonly events: readonly CalendarEvent[];

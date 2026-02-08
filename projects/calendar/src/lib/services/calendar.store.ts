@@ -1,5 +1,12 @@
-import { Injectable, computed, signal } from '@angular/core';
-import { CALENDAR_CONSTANTS, CalendarConfig, CalendarEvent, CalendarState, CalendarView, INITIAL_CALENDAR_STATE, WEEK_START } from '../models/calendar.models';
+import { computed, Injectable, signal } from '@angular/core';
+import {
+  CALENDAR_CONSTANTS,
+  CalendarConfig,
+  CalendarEvent,
+  CalendarState,
+  CalendarView,
+  INITIAL_CALENDAR_STATE, WEEK_START,
+} from '../models/calendar.models';
 
 
 @Injectable()

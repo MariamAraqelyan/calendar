@@ -14,12 +14,12 @@ import { DateUtils } from '../../utils/date-utils';
 export class Weekly {
   private readonly store = inject(CalendarStore);
 
-  eventClick = output<CalendarEvent>();
-  dateClick = output<Date>();
+  readonly eventClick = output<CalendarEvent>();
+  readonly dateClick = output<Date>();
 
   hours = Array.from({ length: CALENDAR_CONSTANTS.HOURS_IN_DAY }, (_, i) => i);
 
-  weekDays = computed(() => {
+  readonly weekDays = computed(() => {
     const config = this.store.config();
     const locale = config.locale || 'en-US';
     
@@ -61,11 +61,11 @@ export class Weekly {
     return Math.max(height, 25); 
   }
 
-  onEventClick(event: CalendarEvent) {
+  onEventClick(event: CalendarEvent): void {
     this.eventClick.emit(event);
   }
 
-  onDateClick(date: Date) {
+  onDateClick(date: Date): void {
     this.dateClick.emit(date);
   }
 }

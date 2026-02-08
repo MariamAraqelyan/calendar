@@ -31,8 +31,8 @@
                 class="day-container__event" 
                 [style.background-color]="event.backgroundColor"
                 [style.color]="event.textColor"
-                [style.top.rem]="getEventTop(event) * 0.0625"
                 [style.height.rem]="getEventHeight(event) * 0.0625"
+                [style.top.rem]="getEventTop(event) * 0.0625"
                 (click)="$event.stopPropagation(); onEventClick(event)"
               >
                 <div class="day-container__event-title">{{ event.title }}</div>

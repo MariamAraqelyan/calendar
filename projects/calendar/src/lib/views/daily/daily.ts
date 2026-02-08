@@ -17,12 +17,12 @@ import { DatePipe } from '@angular/common';
 export class Daily {
   private readonly store = inject(CalendarStore);
 
-  eventClick = output<CalendarEvent>();
-  dateClick = output<Date>();
+  readonly eventClick = output<CalendarEvent>();
+  readonly dateClick = output<Date>();
 
   hours = Array.from({ length: CALENDAR_CONSTANTS.HOURS_IN_DAY }, (_, i) => i);
 
-  dayInfo = computed(() => {
+  readonly dayInfo = computed(() => {
     const locale = this.store.config().locale || 'en-US';
     const date = this.store.currentDate();
     
@@ -33,7 +33,7 @@ export class Daily {
     };
   });
 
-  dayEvents = computed(() => {
+  readonly dayEvents = computed(() => {
     const current = this.store.currentDate();
     return this.store.events().filter(event =>
       DateUtils.isSameDay(new Date(event.start), current) && !event.allDay
@@ -53,11 +53,11 @@ export class Daily {
     return Math.max(diffMinutes, 25);
   }
 
-  onEventClick(event: CalendarEvent) {
+  onEventClick(event: CalendarEvent): void {
     this.eventClick.emit(event);
   }
 
-  onDateClick(date: Date) {
+  onDateClick(date: Date): void {
     this.dateClick.emit(date);
   }
 }

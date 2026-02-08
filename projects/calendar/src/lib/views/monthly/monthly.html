@@ -8,16 +8,15 @@
         
         <div 
             class="calendar-month__day" 
-            [class.calendar-month__day--today]="isToday(date)"
-            [class.calendar-month__day--other-month]="!isSameMonth(date)"
             [class.calendar-month__day--has-events]="dayEvents.length > 0"
+            [class.calendar-month__day--other-month]="!isSameMonth(date)"
+            [class.calendar-month__day--today]="isToday(date)"
             (click)="onDateClick(date)"
         >
             @if (dayCellTemplate()) {
                 <ng-container 
                     [ngTemplateOutlet]="dayCellTemplate()!" 
-                    [ngTemplateOutletContext]="{ $implicit: date }">
-                </ng-container>
+                    [ngTemplateOutletContext]="{ $implicit: date }"/>
             } @else {
                 <div class="calendar-month__day-number">{{ date.getDate() }}</div>
                 
@@ -33,8 +32,7 @@
                             @if (eventTemplate()) {
                                 <ng-container 
                                     [ngTemplateOutlet]="eventTemplate()!" 
-                                    [ngTemplateOutletContext]="{ $implicit: event }">
-                                </ng-container>
+                                    [ngTemplateOutletContext]="{ $implicit: event }"/>
                             } @else {
                                 <div 
                                     class="calendar-month__event" 

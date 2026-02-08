@@ -7,7 +7,7 @@ export class DateUtils {
         return new Date(date.getFullYear(), date.getMonth() + 1, 0);
     }
 
-    static startOfWeek(date: Date, weekStartsOn: number = 0): Date {
+    static startOfWeek(date: Date, weekStartsOn = 0): Date {
         const d = new Date(date);
         const day = d.getDay();
         const diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
@@ -16,7 +16,7 @@ export class DateUtils {
         return d;
     }
 
-    static endOfWeek(date: Date, weekStartsOn: number = 0): Date {
+    static endOfWeek(date: Date, weekStartsOn = 0): Date {
         const d = this.startOfWeek(date, weekStartsOn);
         d.setDate(d.getDate() + 6);
         d.setHours(23, 59, 59, 999);
@@ -55,7 +55,7 @@ export class DateUtils {
         return days;
     }
 
-    static getMonthGrid(date: Date, weekStartsOn: number = 0): Date[] {
+    static getMonthGrid(date: Date, weekStartsOn = 0): Date[] {
         const start = this.startOfMonth(date);
         const gridStart = this.startOfWeek(start, weekStartsOn);
         const grid: Date[] = [];

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   contentChild,
@@ -24,28 +25,29 @@ import { Daily } from '../views/daily/daily';
     Weekly
   ],
   providers: [CalendarStore],
-  styleUrl: './main.scss'
+  styleUrl: './main.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Main {
   protected readonly store = inject(CalendarStore);
 
-  view = input<CalendarView>('month');
-  events = input<readonly CalendarEvent[]>([]);
-  config = input<Partial<CalendarConfig>>({});
+  readonly view = input<CalendarView>('month');
+  readonly events = input<readonly CalendarEvent[]>([]);
+  readonly config = input<Partial<CalendarConfig>>({});
 
-  viewChanged = output<CalendarView>();
-  dateClicked = output<Date>();
-  eventClicked = output<CalendarEvent>();
+  readonly viewChanged = output<CalendarView>();
+  readonly dateClicked = output<Date>();
+  readonly eventClicked = output<CalendarEvent>();
 
-  headerTemplate = contentChild<TemplateRef<unknown>>('headerTemplate');
-  dayCellTemplate = contentChild<TemplateRef<unknown>>('dayCellTemplate');
-  eventTemplate = contentChild<TemplateRef<unknown>>('eventTemplate');
+  readonly headerTemplate = contentChild<TemplateRef<unknown>>('headerTemplate');
+  readonly dayCellTemplate = contentChild<TemplateRef<unknown>>('dayCellTemplate');
+  readonly eventTemplate = contentChild<TemplateRef<unknown>>('eventTemplate');
 
   viewState = this.store.view;
   currentDate = this.store.currentDate;
   configState = this.store.config;
 
-  calendarTitle = computed(() => {
+  readonly calendarTitle = computed(() => {
     const date = this.currentDate();
     const locale = this.configState().locale || 'en-US';
     return new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' }).format(date);

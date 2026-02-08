@@ -1,28 +1,28 @@
 <div class="calendar-container calendar-{{viewState()}}-view" [attr.data-theme]="configState().theme ? 'dark' : 'light'">
     <div class="calendar-header">
     <div class="calendar-controls">
-        <button (click)="store.prev()" class="btn">&lt;</button>
-        <button (click)="store.today()" class="btn">Today</button>
-        <button (click)="store.next()" class="btn">&gt;</button>
+        <button class="btn" (click)="store.prev()">&lt;</button>
+        <button class="btn" (click)="store.today()">Today</button>
+        <button class="btn" (click)="store.next()">&gt;</button>
     </div>
     
     <h2 class="calendar-title">{{ calendarTitle() }}</h2>
     
     <div class="view-switcher">
-        <button 
-        [class.active]="viewState() === 'month'" 
-        (click)="store.setView('month')" 
-        class="btn"
+        <button
+            class="btn"
+            [class.active]="viewState() === 'month'" 
+            (click)="store.setView('month')" 
         >Month</button>
         <button 
-        [class.active]="viewState() === 'week'" 
-        (click)="store.setView('week')" 
-        class="btn"
+            class="btn"
+            [class.active]="viewState() === 'week'" 
+            (click)="store.setView('week')" 
         >Week</button>
-        <button 
-        [class.active]="viewState() === 'day'" 
-        (click)="store.setView('day')" 
-        class="btn"
+        <button
+            class="btn"
+            [class.active]="viewState() === 'day'" 
+            (click)="store.setView('day')" 
         >Day</button>
     </div>
     </div>
@@ -33,18 +33,21 @@
             <app-monthly
                 [dayCellTemplate]="dayCellTemplate()!"
                 [eventTemplate]="eventTemplate()!"
-                (eventClick)="onEventClick($event)"
                 (dateClick)="onDateClick($event)"
+                (eventClick)="onEventClick($event)"
             />
         }
         @case ('week') {
             <app-weekly
-              (eventClick)="onEventClick($event)"
-              (dateClick)="onDateClick($event)"
+                (dateClick)="onDateClick($event)"
+                (eventClick)="onEventClick($event)"
             />
         }
         @case ('day') {
-            <app-daily/>
+            <app-daily
+                (dateClick)="onDateClick($event)"
+                (eventClick)="onEventClick($event)"
+            />
         }
     }
     </div>

@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, output, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output, TemplateRef } from '@angular/core';
 import { CalendarStore } from '../../services/calendar.store';
 import { CALENDAR_CONSTANTS, CalendarEvent } from '../../models/calendar.models';
 import { DateUtils } from '../../utils/date-utils';
@@ -12,15 +12,16 @@ import { NgTemplateOutlet } from '@angular/common';
   standalone: true,
   templateUrl: './monthly.html',
   styleUrl: './monthly.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Monthly {
   protected readonly store = inject(CalendarStore);
 
-  dayCellTemplate = input<TemplateRef<unknown> | null>(null);
-  eventTemplate = input<TemplateRef<unknown> | null>(null);
+  readonly dayCellTemplate = input<TemplateRef<unknown> | null>(null);
+  readonly eventTemplate = input<TemplateRef<unknown> | null>(null);
 
-  eventClick = output<CalendarEvent>();
-  dateClick = output<Date>();
+  readonly eventClick = output<CalendarEvent>();
+  readonly dateClick = output<Date>();
 
   readonly calendarGrid = computed(() => {
     return DateUtils.getMonthGrid(
