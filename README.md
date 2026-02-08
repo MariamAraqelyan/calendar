@@ -15,3 +15,11 @@ Prefix-free: No more hss- clutter. Clean, semantic classes like .calendar-contai
 
 🛠 Constant-Driven Logic
 Time calculations, grid heights, and day offsets are managed via a centralized configuration, eliminating "magic numbers" and making the calendar highly adaptable to different locales or business hours.
+
+<img width="1895" height="548" alt="image" src="https://github.com/user-attachments/assets/566c3529-705b-4350-9c9b-1ebb1bd6b932" />
+<img width="1882" height="922" alt="image" src="https://github.com/user-attachments/assets/ff533777-4eb5-4cf5-a1f6-fadea459ff90" />
+<img width="1884" height="926" alt="image" src="https://github.com/user-attachments/assets/54b02b90-e935-4b70-bc0a-03d5fd49f68b" />
+
+
+
+
