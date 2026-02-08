@@ -1,0 +1,35 @@
+@mixin calendar-theme-variables {
+  --calendar-bg: #ffffff;
+  --calendar-text: #333333;
+  --calendar-border: #e2e8f0;
+  --calendar-header-bg: #f8fafc;
+  --calendar-header-text: #333333;
+  --calendar-today-bg: rgba(25, 118, 210, 0.08);
+  --calendar-today-text: #1976d2;
+  --calendar-today-text-rgb: 25, 118, 210;
+  --calendar-event-bg: #1976d2;
+  --calendar-event-text: #ffffff;
+  --calendar-weekend-bg: #fafafa;
+  --calendar-other-month-text: #94a3b8;
+  --calendar-hover-bg: #f1f5f9;
+  --calendar-font-family: inherit;
+
+  // Handle dark mode
+  &[data-theme='dark'],
+  [data-theme='dark'] &,
+  :host-context([data-theme='dark']) & {
+    --calendar-bg: #0f172a;
+    --calendar-text: #f1f5f9;
+    --calendar-border: #334155;
+    --calendar-header-bg: #1e293b;
+    --calendar-header-text: #f1f5f9;
+    --calendar-today-bg: rgba(59, 130, 246, 0.15);
+    --calendar-today-text: #60a5fa;
+    --calendar-today-text-rgb: 96, 165, 250;
+    --calendar-event-bg: #2563eb;
+    --calendar-event-text: #ffffff;
+    --calendar-weekend-bg: #111827;
+    --calendar-other-month-text: #64748b;
+    --calendar-hover-bg: #1e293b;
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "calendar",
+  "version": "1.0.6",
+  "description": "Responsive Angular calendar library with support for Month, Week, and Day views.",
+  "keywords": [
+    "angular",
+    "calendar",
+    "scheduler",
+    "datepicker",
+    "events",
+    "full-calendar",
+    "responsive",
+    "dark-mode",
+    "angular-signals"
+  ],
+  "author": "Hawker Team",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "homepage": "https://github.com/MariamAraqelyan/calendar",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MariamAraqelyan/calendar"
+  },
+  "peerDependencies": {
+    "@angular/common": "^17.0.0 || ^18.0.0 || ^19.0.0 || ^21.0.0",
+    "@angular/core": "^17.0.0 || ^18.0.0 || ^19.0.0 || ^21.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
