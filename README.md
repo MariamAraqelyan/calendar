@@ -11,14 +11,27 @@ BEM Methodology: Strict naming convention ensures no style leakage and easy over
 
 Fluid Scaling: Every dimension (from margins to grid heights) is defined in rem, ensuring the calendar scales perfectly with browser font-size settings for accessibility.
 
-Prefix-free: No more hss- clutter. Clean, semantic classes like .calendar-container__event.
-
 🛠 Constant-Driven Logic
 Time calculations, grid heights, and day offsets are managed via a centralized configuration, eliminating "magic numbers" and making the calendar highly adaptable to different locales or business hours.
 
 <img width="1895" height="548" alt="image" src="https://github.com/user-attachments/assets/566c3529-705b-4350-9c9b-1ebb1bd6b932" />
 <img width="1882" height="922" alt="image" src="https://github.com/user-attachments/assets/ff533777-4eb5-4cf5-a1f6-fadea459ff90" />
 <img width="1884" height="926" alt="image" src="https://github.com/user-attachments/assets/54b02b90-e935-4b70-bc0a-03d5fd49f68b" />
+
+Module,Responsibility
+CalendarStore,"Signal-based state management for dates, events, and views."
+Views,"Specialized components for Daily, Weekly, and Monthly layouts."
+DateUtils,"Lightweight, prefix-free utilities for date arithmetic."
+Theming,SCSS mixins and CSS variables for deep UI customization.
+
+🛠️ Development Workflow
+Prerequisites
+Node.js: v20.x or higher
+npm: v10.x or higher
+Angular CLI: v19.x or higher
+
+
+
 
 
 
