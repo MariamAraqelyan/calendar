@@ -9,7 +9,7 @@
     background-color: var(--calendar-bg);
 
     &__time-column {
-        width: 3.75rem; // 60px
+        width: 3.75rem;
         flex-shrink: 0;
         border-right: 1px solid var(--calendar-border);
         display: flex;

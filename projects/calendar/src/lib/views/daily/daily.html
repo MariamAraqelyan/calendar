@@ -1,1 +1,52 @@
-<p>daily works!</p>
+<div class="day-container">
+  <div class="day-container__time-column">
+    <div class="day-container__time-header"></div>
+    <div class="day-container__time-slots">
+      @for (hour of hours; track hour) {
+        <div class="day-container__time-slot">{{ hour }}:00</div>
+      }
+    </div>
+  </div>
+  
+  <div class="day-container__content">
+    <div class="day-container__header">
+      <div class="day-container__info">
+        <span class="day-container__name">{{ dayInfo().name }}</span>
+        <span class="day-container__number" [class.day-container__number--today]="dayInfo().isToday">
+          {{ dayInfo().date.getDate() }}
+        </span>
+      </div>
+    </div>
+    
+    <div class="day-container__grid-scroll-area">
+      <div class="day-container__grid">
+        <div class="day-container__column" (click)="onDateClick(dayInfo().date)">
+          @for (hour of hours; track hour) {
+            <div class="day-container__grid-slot"></div>
+          }
+          
+          <div class="day-container__events-overlay">
+            @for (event of dayEvents(); track event.id) {
+              <div 
+                class="day-container__event" 
+                [style.background-color]="event.backgroundColor"
+                [style.color]="event.textColor"
+                [style.top.rem]="getEventTop(event) * 0.0625"
+                [style.height.rem]="getEventHeight(event) * 0.0625"
+                (click)="$event.stopPropagation(); onEventClick(event)"
+              >
+                <div class="day-container__event-title">{{ event.title }}</div>
+                
+                @if (getEventHeight(event) > 40) {
+                  <div class="day-container__event-time">
+                    {{ event.start | date:'shortTime' }} - {{ event.end | date:'shortTime' }}
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

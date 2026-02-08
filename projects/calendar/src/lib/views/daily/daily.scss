@@ -1,0 +1,163 @@
+@use '../../styles/variables' as vars;
+
+.day-container {
+    @include vars.calendar-theme-variables;
+    display: flex;
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--calendar-bg);
+
+    &__time-column {
+        width: 3.75rem;
+        flex-shrink: 0;
+        border-right: 1px solid var(--calendar-border);
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__time-header {
+        height: 5rem;
+        background-color: var(--calendar-header-bg);
+        border-bottom: 1px solid var(--calendar-border);
+        flex-shrink: 0;
+    }
+
+    &__time-slots {
+        flex: 1;
+        overflow: hidden;
+    }
+
+    &__time-slot {
+        height: 3.75rem; 
+        font-size: 0.7rem;
+        color: var(--calendar-other-month-text);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 0.3125rem;
+        box-sizing: border-box;
+        font-weight: 500;
+    }
+
+    &__content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    &__header {
+        background-color: var(--calendar-header-bg);
+        border-bottom: 1px solid var(--calendar-border);
+        padding: 0.9375rem 1.5625rem;
+        flex-shrink: 0;
+    }
+
+    &__info {
+        display: flex;
+        align-items: baseline;
+        gap: 0.75rem; 
+    }
+
+    &__name {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--calendar-other-month-text);
+    }
+
+    &__number {
+        font-size: 1.75rem;
+        font-weight: 700;
+
+        &--today {
+            background-color: var(--calendar-today-text);
+            color: #fff;
+            padding: 0.125rem 0.75rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.25rem 0.625rem rgba(var(--calendar-today-text-rgb), 0.3);
+        }
+    }
+
+    &__grid-scroll-area {
+        flex: 1;
+        overflow-y: auto;
+        position: relative;
+
+        &::-webkit-scrollbar {
+            width: 0.5rem;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: var(--calendar-border);
+            border-radius: 0.25rem;
+        }
+    }
+
+    &__grid {
+        position: relative;
+        min-height: 90rem;
+    }
+
+    &__column {
+        position: relative;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    &__grid-slot {
+        height: 3.75rem;
+        border-bottom: 1px solid var(--calendar-border);
+        box-sizing: border-box;
+    }
+
+    &__events-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 1.25rem;
+        bottom: 0;
+        pointer-events: none;
+    }
+
+    &__event {
+        position: absolute;
+        left: 0.625rem;
+        right: 0;
+        padding: 0.5rem 0.9375rem;
+        font-size: 0.85rem;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        pointer-events: auto;
+        cursor: pointer;
+        box-shadow: 0 0.1875rem 0.5rem rgba(0, 0, 0, 0.1);
+        border-left: 0.3125rem solid rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+        transition: transform 0.1s, box-shadow 0.1s;
+
+        &:hover {
+            z-index: 5;
+            transform: translateY(-0.125rem);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.15);
+        }
+    }
+
+    &__event-title {
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__event-time {
+        font-size: 0.7rem;
+        opacity: 0.85;
+        font-weight: 500;
+    }
+}
